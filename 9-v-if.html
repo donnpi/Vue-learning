@@ -9,9 +9,9 @@
 
 <body>
     <div id="app">
-        <input type="button" value="btn" @click="change">
-        <img v-show="isShow" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1158007558,1530871928&fm=26&gp=0.jpg" alt="">
-        <img v-show="age>=18" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1158007558,1530871928&fm=26&gp=0.jpg" alt="">
+        <button @click="toggleIsShow">toggle</button>
+        <p v-if="isShow">wow nico</p>
+        <p v-show="isShow">wow nico</p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -20,12 +20,13 @@
             el: "#app",
             data: {
                 isShow: false,
-                age: 20
+
+
             },
             methods: {
-                change: function() {
-                    this.isShow = !this.isShow
+                toggleIsShow: function() {
                     console.log(this.isShow);
+                    this.isShow = !this.isShow;
                 }
             }
         })
