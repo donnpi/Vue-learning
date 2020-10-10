@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="message" @keyup.enter="getM">
+        <h4>{{message}}</h4>
+        <button @click="setM">change</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: "where is your mind?"
+            },
+            methods: {
+                getM: function() {
+                    alert(this.message)
+                },
+                setM: function() {
+                    this.message = 'with your feet in the air'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

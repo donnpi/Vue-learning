@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+
+</head>
+
+<body>
+    <section class="todoapp" id="todo">
+
+        <header class="header">
+            <h1>todos</h1>
+            <input type="text" v-model="title" @keyup.enter="addTitle" class="new-todo" placeholder="What needs to be done?" autofocus id="task">
+        </header>
+
+        <!-- This section should be hidden by default and shown when there are todos -->
+        <section class="main">
+            <input class="toggle-all" type="checkbox">
+            <ul class="todo-list" id="todo-list">
+                <li v-for="(item,index) in titleArr">
+                    <div class="view">
+
+                        <label> {{index+1}}{{item}}</label>
+                        <button class="destroy" @click="remove(index)"></button>
+                    </div>
+                    <input class="edit">
+                </li>
+            </ul>
+        </section>
+
+        <!-- This footer should hidden by default and shown when there are todos -->
+        <footer class="footer">
+            <!-- This should be `0 items left` by default -->
+            <span class="todo-count" v-show="titleArr.length>0"><strong id="count">{{titleArr.length}}</strong> item left</span>
+            <!-- Remove this if you don't implement routing -->
+            <ul class="filters">
+                <li>
+                    <a class="selected" href="javascript:;">All</a>
+                </li>
+                <li>
+                    <a href="javascript:;">Active</a>
+                </li>
+                <li>
+                    <a href="javascript:;">Completed</a>
+                </li>
+            </ul>
+            <!-- 清空 ↓ -->
+            <button @click="clearAll" class="clear-completed">Clear </button>
+        </footer>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var todo = new Vue({
+                el: "#todo",
+                data: {
+                    title: '',
+                    titleArr: [],
+                    isShow: true,
+                },
+                methods: {
+                    addTitle: function() {
+                        this.titleArr.push(this.title);
+
+
+                        this.title = '';
+                        console.log(this.titleArr);
+                    },
+                    toggle: function() {
+                        this.done = !this.done
+                    },
+                    remove: function(index) {
+                        console.log(index);
+                        this.titleArr.splice(index, 1)
+                    },
+                    clearAll: function(index) {
+                        this.titleArr = [];
+                    }
+
+
+                }
+            })
+            //问题：想要双击改变li的class，怎么给每个li绑定一个独立的布尔值呢TUT
+    </script>
+
+
+
+</body>
+
+</html>

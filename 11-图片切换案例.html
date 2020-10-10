@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app {
+            width: 300px;
+            height: 180px;
+            position: relative;
+        }
+        
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        
+        #app div {
+            position: absolute;
+            background-color: white;
+            color: black;
+            top: 50%;
+            cursor: pointer;
+        }
+        
+        #app div:last-child {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <img :src="imgArr[index]">
+        <div @click="tos" v-show="index>0"> ⬅</div>
+        <div @click="fors" v-show="index<imgArr.length-1"> →</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                imgArr: ['https://hbimg.huabanimg.com/6fa243a2680dd3b4bf92c875d02cb072e11c8fe77e3c-v76l69_fw658/format/webp', 'https://hbimg.huabanimg.com/e89ef254dba063bdf4de78f73f648224d837df5717e572-5exGb1_fw658/format/webp', 'https://hbimg.huabanimg.com/b77592b853254f50a7f283646b14c1ab1fadd255e09f-3aGwCD_fw658/format/webp'],
+                index: 0,
+            },
+            methods: {
+                fors: function() {
+                    if (this.index == this.imgArr.length - 1) {
+                        return false;
+                    }
+                    this.index++;
+                },
+                tos: function() {
+                    if (this.index == 0) {
+                        return false
+                    }
+                    this.index--;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
